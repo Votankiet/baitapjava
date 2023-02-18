@@ -5,13 +5,12 @@ class program {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int n = sc.nextInt();
-        if(soChinhPhuong.isChinhPhuong(n)) {
-            System.out.println("La so chinh phuong");
-        }
-        else {
-            System.out.println("Khong la so chinh phuong");
-        }
+        double n = sc.nextDouble();
+        
+        HocSinh hs = new HocSinh(n);
+
+        hs.xepLoaiHocSinh();
+        System.out.println(hs.getXepLoai());
     }
 }
 
@@ -21,5 +20,25 @@ final class soChinhPhuong {
         double sqrtNum = Math.sqrt(number);
         if(Math.floor(sqrtNum) == sqrtNum) return true;
         return false;
+    }
+}
+
+class HocSinh {
+    private double soDiem;
+    private String xepLoai;
+
+    public HocSinh(double _soDiem) {
+        soDiem = _soDiem;
+    }
+
+    public void xepLoaiHocSinh() {
+        if(soDiem < 5.0) xepLoai = "Kem";
+        else if (soDiem < 7.0) xepLoai = "TB";
+        else if (soDiem < 8.0) xepLoai = "Kha";
+        else xepLoai = "Gioi";
+    }
+
+    public String getXepLoai() {
+        return xepLoai;
     }
 }

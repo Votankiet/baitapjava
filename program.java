@@ -6,13 +6,14 @@ class program {
         Scanner sc = new Scanner(System.in);
 
         int n = sc.nextInt();
-        
-        soHangTram s = new soHangTram(n);
 
-        System.out.println(s.toString());
+        int arr[] = {3, 5, 1, 2, 9, 10, 7, 1, 3};
+
+        suLyDinhDang handler = new suLyDinhDang(arr, n);
+        handler.formatAndPrint();
     }
 }
-
+// Bai so chinh phuong
 final class soChinhPhuong {
 
     public static boolean isChinhPhuong(double number) {
@@ -21,7 +22,7 @@ final class soChinhPhuong {
         return false;
     }
 }
-
+// Bai xep loai hoc sinh
 class HocSinh {
     private double soDiem;
     private String xepLoai;
@@ -41,7 +42,7 @@ class HocSinh {
         return xepLoai;
     }
 }
-
+// Bai bien so thanh chu
 class soHangTram {
     private String digit[] = {"", "Mot", "Hai", "Ba", "Bon", "Nam", "Sau", "Bay", "Tam", "Chin"};
     private int donVi;
@@ -72,5 +73,42 @@ class soHangTram {
         temp += (" " + digit[donVi]);
 
         return temp;
+    }
+}
+//Bai tinh giai thua
+final class toanHoc {
+    public static int tinhGiaiThua(int number) {
+        int res = 1;
+        int count = 2;
+
+        do {
+            if(number == 0 || number == 1) break;
+            res *= count++;
+        }while(count <= number);
+
+        return res;
+    }
+}
+//Bai xoa phan tu trong mang va sap xep theo thu tu tang dan
+
+class suLyDinhDang {
+    private int tempArr[];
+    private int elementToRemove;
+    public suLyDinhDang(int[] _array, int x) {
+        tempArr = _array;
+        elementToRemove = x;
+    }
+
+    public void formatAndPrint() {
+        ArrayList<Integer> arrList = new ArrayList<>();
+
+        for(int i = 0; i < tempArr.length; i++) {
+            if(tempArr[i] != elementToRemove) {
+                arrList.add(tempArr[i]);
+            }
+        }
+        System.out.println("Mang sau khi xoa x " + arrList.toString());
+        Collections.sort(arrList);
+        System.out.println("Mang sau khi sap xep" + arrList.toString());
     }
 }

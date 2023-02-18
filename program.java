@@ -5,12 +5,11 @@ class program {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        double n = sc.nextDouble();
+        int n = sc.nextInt();
         
-        HocSinh hs = new HocSinh(n);
+        soHangTram s = new soHangTram(n);
 
-        hs.xepLoaiHocSinh();
-        System.out.println(hs.getXepLoai());
+        System.out.println(s.toString());
     }
 }
 
@@ -40,5 +39,38 @@ class HocSinh {
 
     public String getXepLoai() {
         return xepLoai;
+    }
+}
+
+class soHangTram {
+    private String digit[] = {"", "Mot", "Hai", "Ba", "Bon", "Nam", "Sau", "Bay", "Tam", "Chin"};
+    private int donVi;
+    private int chuc;
+    private int tram;
+
+    public soHangTram(int number) {
+        int store[] = new int[3];
+        int i = 0;
+        while(number > 0) {
+            store[i] = number % 10;
+            number /= 10;
+            i++;
+        }
+        tram = store[2];
+        chuc = store[1];
+        donVi = store[0];
+    }
+
+    public String toString() {
+        String temp = "";
+        if(tram != 0) temp += (digit[tram] + " Tram");
+        if(chuc == 0 && donVi != 0) temp += " Le";
+        else {
+            if(chuc == 1) temp += " Muoi";
+            else if(chuc != 0) temp += (" " + digit[chuc] + " Muoi");
+        }
+        temp += (" " + digit[donVi]);
+
+        return temp;
     }
 }
